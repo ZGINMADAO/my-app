@@ -1,11 +1,19 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route, Switch, Link, NavLink} from 'react-router-dom'
 import {Layout, Menu, Icon} from 'antd';
 import './admin.css'
+import Main from "../pages/main/Index";
+import Table from "../pages/table/Index";
+import {signOut} from "../utils/gather";
 
 const {Header, Sider, Content} = Layout;
+const {SubMenu} = Menu;
 
-export class AdminLayout extends React.Component {
+
+const HomePage = () => <div>home page</div>
+const UserPage = () => <div>user page</div>
+
+export default class AdminLayout extends React.Component {
     state = {
         collapsed: false,
     };
@@ -17,6 +25,10 @@ export class AdminLayout extends React.Component {
     clickNav = () => {
         // router.push('/table')
     };
+    signOutHandle = () => {
+        signOut();
+        this.props.history.replace('/login');
+    };
 
     render() {
         return (
@@ -25,34 +37,29 @@ export class AdminLayout extends React.Component {
                     <div className="logo"/>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1">
-                            <Icon type="user"/>
-                            <span>nav 1</span>
+                            <NavLink to="/admin/index" activeStyle={{
+                                fontWeight: "bold"
+                            }}> <Icon type="user"/><span>index</span></NavLink>
                         </Menu.Item>
                         <Menu.Item key="2" onClick={this.clickNav}>
-                            <Icon type="video-camera"/>
-                            <span>nav 2</span>
+                            <NavLink to="/admin/table" activeStyle={{
+                                fontWeight: "bold"
+                            }}><Icon type="video-camera"/><span>table</span></NavLink>
                         </Menu.Item>
-                        <Menu.Item key="3">
-                            <Icon type="upload"/>
-                            <span>nav 3</span>
-                        </Menu.Item>
-                        <Menu.Item key="4">
-                            <Icon type="upload"/>
-                            <span>nav 4</span>
-                        </Menu.Item>
-                        <Menu.Item key="5">
-                            <Icon type="upload"/>
-                            <span>nav 5</span>
+                        <Menu.Item key="3" onClick={this.signOutHandle}>
+                            <Icon type="logout"/><span>退出</span>
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
                     <Header style={{background: '#fff', padding: 0}}>
-                        <Icon
-                            className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle}
-                        />
+                        <div>
+                            <Icon
+                                className="trigger"
+                                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                                onClick={this.toggle}
+                            />
+                        </div>
                     </Header>
                     <Content
                         style={{
@@ -62,7 +69,17 @@ export class AdminLayout extends React.Component {
                             minHeight: 280,
                         }}
                     >
-                        <Route path={`${this.props.match.path}/demo`} component={Demo}/>
+                        <Switch>
+                            {/*<Route path={`${this.props.match.path}/admin/index`} component={Main}/>*/}
+                            {/*<Route path={`${this.props.match.path}/admin/table`} component={Table}/>*/}
+                            {/*<Route path={`${this.props.match.path}/admin/page`} component={HomePage}/>*/}
+                            {/*<Route path={`${this.props.match.path}/admin/page/user`} component={UserPage}/>*/}
+
+                            <Route path={`/admin/index`} component={Main}/>
+                            <Route path={`/admin/table`} component={Table}/>
+                            <Route path={`/admin/page`} component={HomePage}/>
+                            <Route path={`/admin/page/user`} component={UserPage}/>
+                        </Switch>
                     </Content>
                 </Layout>
             </Layout>

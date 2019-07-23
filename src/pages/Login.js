@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
 import './Login.css'
 import request from '../utils/request'
+import {setToken} from '../utils/gather'
 
 class NormalLoginForm extends React.Component {
     handleSubmit = e => {
@@ -18,6 +19,7 @@ class NormalLoginForm extends React.Component {
                 console.log('login catch error');
                 console.log(error);
             });
+            setToken();
             console.log('login ajax end');
             console.log(result);
             this.props.history.replace('/admin/demo')

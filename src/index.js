@@ -2,36 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import PrimaryLayout from './PrimaryLayout'
-import AdminLayout from './pages/admin'
+import AdminLayout from './layouts/AdminLayout'
+import PrivateRoute from './components/PrivateRoute'
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Login from './pages/Login'
-import Demo from './Demo'
-
-// import api from './pages/api'
-
-// global.Api = api;
+import NotFound from './pages/NotFound'
 
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact render={() => <Redirect to={`/login`} push/>}/>
-            {/*<Route path="/demo" component={Demo}/>*/}
-            <Route path="/admin" component={AdminLayout}/>
-            {/*<Route path="/admin" exact component={AdminLayout}>*/}
-            {/*    <Switch>*/}
-            {/*        <Route path="/admin/demo" component={Demo}/>*/}
-            {/*    </Switch>*/}
-            {/*</Route>*/}
-
-
-            {/*<Route path="/admin" exact render={ props => LayoutRouter }>*/}
-            {/*    <Switch>*/}
-            {/*        <Route path="/admin/demo" component={Demo}/>*/}
-            {/*    </Switch>*/}
-            {/*</Route>*/}
+            {/*<Route path="/admin" component={AdminLayout}/>*/}
             <Route path="/login" component={Login}/>
+            {/*<PrivateRoute path="/admin" component={AdminLayout}/>*/}
+            <PrivateRoute path="/" component={AdminLayout}/>
+            <Route component={NotFound}/>
         </Switch>
     </BrowserRouter>
     , document.getElementById('root'));
