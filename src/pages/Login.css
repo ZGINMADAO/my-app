@@ -1,0 +1,40 @@
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+    float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+    width: 100%;
+}
+
+
+/*.divArea {*/
+/*    position: absolute;*/
+/*    !*width: 400px;*!*/
+/*    !*background-color: gray;*!*/
+/*    !*top: 50%;*!*/
+/*    left: 40%;*/
+/*    right: 40%;*/
+/*    top: 30%;*/
+/*    bottom: 40%;*/
+/*    height: 320px;*/
+/*    !*box-shadow: 0 0 500px red;*!*/
+/*    box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);*/
+
+/*    padding: 35px;*/
+/*}*/
+
+
+.divArea {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin: -160px 0 0 -160px;
+    width: 320px;
+    height: 320px;
+    padding: 36px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+    font-family: Georgia, sans-serif;
+    text-align: center;
+}
