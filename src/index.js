@@ -10,11 +10,15 @@ import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import { Provider } from 'mobx-react'
 import stores from './pages/stores/Index'
+import { Provider as ReduxProvider } from 'react-redux'
+import './redux-simple' // redux简单例子
+// import reducer from './redux-stores/reducer'
 
 
 ReactDOM.render(
     <BrowserRouter>
         <Provider {...stores}>
+            {/* <ReduxProvider {...reduxStores}> */}
             <Switch>
                 <Route path="/" exact render={() => <Redirect to={`/login`} push />} />
                 {/*<Route path="/admin" component={AdminLayout}/>*/}
@@ -23,6 +27,7 @@ ReactDOM.render(
                 <PrivateRoute path="/" component={AdminLayout} />
                 <Route component={NotFound} />
             </Switch>
+            {/* </ReduxProvider> */}
         </Provider>
     </BrowserRouter>
     , document.getElementById('root'));
@@ -30,10 +35,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-async function testAsync() {
-    return "hello async";
-}
-
-const data = testAsync();
-console.log(data);
 serviceWorker.unregister();
