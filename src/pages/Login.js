@@ -22,7 +22,7 @@ class NormalLoginForm extends React.Component {
             setToken();
             console.log('login ajax end');
             console.log(result);
-            this.props.history.replace('/admin/demo')
+            this.props.history.replace('/admin/index')
         })
 
 

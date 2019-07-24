@@ -4,6 +4,7 @@ import {Layout, Menu, Icon} from 'antd';
 import './admin.css'
 import Main from "../pages/main/Index";
 import Table from "../pages/table/Index";
+import Lazy from "../pages/lazy/Index";
 import {signOut} from "../utils/gather";
 
 const {Header, Sider, Content} = Layout;
@@ -49,6 +50,11 @@ export default class AdminLayout extends React.Component {
                         <Menu.Item key="3" onClick={this.signOutHandle}>
                             <Icon type="logout"/><span>退出</span>
                         </Menu.Item>
+                        <Menu.Item key="4" onClick={this.clickNav}>
+                            <NavLink to="/admin/lazy" activeStyle={{
+                                fontWeight: "bold"
+                            }}><Icon type="video-camera"/><span>lazy</span></NavLink>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
@@ -77,6 +83,7 @@ export default class AdminLayout extends React.Component {
 
                             <Route path={`/admin/index`} component={Main}/>
                             <Route path={`/admin/table`} component={Table}/>
+                            <Route path={`/admin/lazy`} component={Lazy}/>
                             <Route path={`/admin/page`} component={HomePage}/>
                             <Route path={`/admin/page/user`} component={UserPage}/>
                         </Switch>

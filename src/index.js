@@ -5,21 +5,25 @@ import './index.css';
 import AdminLayout from './layouts/AdminLayout'
 import PrivateRoute from './components/PrivateRoute'
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
+import { Provider } from 'mobx-react'
+import stores from './pages/stores/Index'
 
 
 ReactDOM.render(
     <BrowserRouter>
-        <Switch>
-            <Route path="/" exact render={() => <Redirect to={`/login`} push/>}/>
-            {/*<Route path="/admin" component={AdminLayout}/>*/}
-            <Route path="/login" component={Login}/>
-            {/*<PrivateRoute path="/admin" component={AdminLayout}/>*/}
-            <PrivateRoute path="/" component={AdminLayout}/>
-            <Route component={NotFound}/>
-        </Switch>
+        <Provider {...stores}>
+            <Switch>
+                <Route path="/" exact render={() => <Redirect to={`/login`} push />} />
+                {/*<Route path="/admin" component={AdminLayout}/>*/}
+                <Route path="/login" component={Login} />
+                {/*<PrivateRoute path="/admin" component={AdminLayout}/>*/}
+                <PrivateRoute path="/" component={AdminLayout} />
+                <Route component={NotFound} />
+            </Switch>
+        </Provider>
     </BrowserRouter>
     , document.getElementById('root'));
 
