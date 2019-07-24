@@ -88,6 +88,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
   },
