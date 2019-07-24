@@ -7,7 +7,7 @@ class Index extends React.Component {
     }
     render() {
         return (
-            <div>this.props.foo</div>
+            <div onClick={this.props.onClick}>{JSON.stringify(this.props.newcount)}dasds </div>
         )
     }
 }
@@ -15,7 +15,7 @@ class Index extends React.Component {
 const mapStateToProps = (state) => {
     return {
         // prop : state.xxx  | 意思是将state中的某个数据映射到props中
-        foo: state.bar
+        ...state
     }
 }
 
@@ -23,10 +23,10 @@ const mapDispatchToProps = (dispatch) => { // 默认传递参数就是dispatch
     return {
         onClick: () => {
             dispatch({
-                type: 'increatment'
+                type: 'INCREASE'
             });
         }
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Foo);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

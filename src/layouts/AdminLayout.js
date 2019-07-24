@@ -5,6 +5,7 @@ import './admin.css'
 import Main from "../pages/main/Index";
 import Table from "../pages/table/Index";
 import Lazy from "../pages/lazy/Index";
+import ReduxPage from "../pages/redux/Index";
 import {signOut} from "../utils/gather";
 
 const {Header, Sider, Content} = Layout;
@@ -55,6 +56,11 @@ export default class AdminLayout extends React.Component {
                                 fontWeight: "bold"
                             }}><Icon type="video-camera"/><span>lazy</span></NavLink>
                         </Menu.Item>
+                        <Menu.Item key="5" onClick={this.clickNav}>
+                            <NavLink to="/admin/redux" activeStyle={{
+                                fontWeight: "bold"
+                            }}><Icon type="video-camera"/><span>redux</span></NavLink>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
@@ -84,6 +90,7 @@ export default class AdminLayout extends React.Component {
                             <Route path={`/admin/index`} component={Main}/>
                             <Route path={`/admin/table`} component={Table}/>
                             <Route path={`/admin/lazy`} component={Lazy}/>
+                            <Route path={`/admin/redux`} component={ReduxPage}/>
                             <Route path={`/admin/page`} component={HomePage}/>
                             <Route path={`/admin/page/user`} component={UserPage}/>
                         </Switch>

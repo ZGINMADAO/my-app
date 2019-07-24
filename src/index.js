@@ -11,14 +11,14 @@ import NotFound from './pages/NotFound'
 import { Provider } from 'mobx-react'
 import stores from './pages/stores/Index'
 import { Provider as ReduxProvider } from 'react-redux'
-import './redux-simple' // redux简单例子
+import reduxStore from './redux-simple' // redux简单例子
 // import reducer from './redux-stores/reducer'
 
 
 ReactDOM.render(
     <BrowserRouter>
         <Provider {...stores}>
-            {/* <ReduxProvider {...reduxStores}> */}
+            <ReduxProvider store={reduxStore}>
             <Switch>
                 <Route path="/" exact render={() => <Redirect to={`/login`} push />} />
                 {/*<Route path="/admin" component={AdminLayout}/>*/}
@@ -27,7 +27,7 @@ ReactDOM.render(
                 <PrivateRoute path="/" component={AdminLayout} />
                 <Route component={NotFound} />
             </Switch>
-            {/* </ReduxProvider> */}
+            </ReduxProvider>
         </Provider>
     </BrowserRouter>
     , document.getElementById('root'));
