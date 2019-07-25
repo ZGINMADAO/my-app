@@ -1,4 +1,4 @@
-import { SERVICES } from "../actions/servicesAction";
+import { handleActions } from 'redux-actions'
 const initialState = {
     isSale: false,
     name: "测试商品",
@@ -6,24 +6,10 @@ const initialState = {
     statue: null
 };
 
-export default (state = initialState, action) => {
+export default handleActions({
+    ADD_NUM(state, action) {
+        console.log(action);
+        return { ...state, name: 5555 };
+    },
+}, initialState);
 
-    switch (action.type) {
-        case 'product-get':
-            return {
-                ...state
-            }
-        case 'product-save':
-            return {
-                ...state,
-                name: '新商品'
-            }
-        case 'product-delete':
-            return {
-                ...state,
-                statue: null
-            }
-        default:
-            return state
-    }
-}

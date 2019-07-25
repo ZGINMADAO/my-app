@@ -8,7 +8,7 @@ class Index extends React.Component {
     }
     render() {
         return (
-            <div onClick={this.props.onClick}>{this.props.users.status} 点击</div>
+            <div onClick={this.props.onClick}>{this.props.products.name} 点击</div>
         )
     }
 }
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => { // 默认传递参数就是dispatch
     return {
         onClick: () => {
             dispatch({
-                type: 'user-init'
+                type: 'ADD_NUM'
             });
         }
     };
