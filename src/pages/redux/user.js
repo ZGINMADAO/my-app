@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => { // 默认传递参数就是dispatch
         onClick: () => {
             console.log('mapDispatchToProps');
             // dispatch(getUserAjax()); //thunk
+            // dispatch(getUserPromise())
             dispatch(getUserPromise2())
         }
     };
