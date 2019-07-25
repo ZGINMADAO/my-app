@@ -6,6 +6,7 @@ import Main from "../pages/main/Index";
 import Table from "../pages/table/Index";
 import Lazy from "../pages/lazy/Index";
 import ReduxPage from "../pages/redux/Index";
+import ReduxUserPage from "../pages/redux/user.js";
 import {signOut} from "../utils/gather";
 
 const {Header, Sider, Content} = Layout;
@@ -57,9 +58,14 @@ export default class AdminLayout extends React.Component {
                             }}><Icon type="video-camera"/><span>lazy</span></NavLink>
                         </Menu.Item>
                         <Menu.Item key="5" onClick={this.clickNav}>
-                            <NavLink to="/admin/redux" activeStyle={{
+                            <NavLink to="/admin/redux"  exact  activeStyle={{
                                 fontWeight: "bold"
                             }}><Icon type="video-camera"/><span>redux</span></NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="6" onClick={this.clickNav}>
+                            <NavLink to="/admin/redux/user" exact  activeStyle={{
+                                fontWeight: "bold"
+                            }}><Icon type="video-camera"/><span>redux user</span></NavLink>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -90,7 +96,8 @@ export default class AdminLayout extends React.Component {
                             <Route path={`/admin/index`} component={Main}/>
                             <Route path={`/admin/table`} component={Table}/>
                             <Route path={`/admin/lazy`} component={Lazy}/>
-                            <Route path={`/admin/redux`} component={ReduxPage}/>
+                            <Route exact path={`/admin/redux`} component={ReduxPage}/>
+                            <Route exact path={`/admin/redux/user`} component={ReduxUserPage}/>
                             <Route path={`/admin/page`} component={HomePage}/>
                             <Route path={`/admin/page/user`} component={UserPage}/>
                         </Switch>

@@ -1,23 +1,10 @@
-// function todoApp(state = initialState, action) {
-//     switch (action.type) {
-//         case ADD_TODO:
-//         case TOGGLE_TODO:
-//             return {
-//                 ...state,
-//                 todos: todos(state.todos, action)
-//             }
-//         default:
-//             return state
-//     }
-// }
+import { combineReducers } from 'redux';
+import users from './users';
+import products from './products';
+import count from './count';
 
-
-// function todoApp(state = initialState, action) {
-//     return {
-//         todos: todos(state.todos, action)
-//     }
-// }
-
-// const todoApp = combineReducers({
-//     todos // 等价于 todos: todos(state.todos, action)
-// })
+export default combineReducers({
+    count,
+    users,
+    products
+});

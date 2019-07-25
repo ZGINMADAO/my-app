@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 class Index extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
     }
     render() {
         return (
-            <div onClick={this.props.onClick}>{JSON.stringify(this.props.newcount)}dasds </div>
+            <div onClick={this.props.onClick}>{this.props.users.status} 点击</div>
         )
     }
 }
@@ -23,7 +24,7 @@ const mapDispatchToProps = (dispatch) => { // 默认传递参数就是dispatch
     return {
         onClick: () => {
             dispatch({
-                type: 'INCREASE'
+                type: 'user-init'
             });
         }
     };
