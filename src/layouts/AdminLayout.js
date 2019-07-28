@@ -8,13 +8,12 @@ import Table from "../pages/table/Index";
 import Lazy from "../pages/lazy/Index";
 import ReduxPage from "../pages/redux/Index";
 import ReduxUserPage from "../pages/redux/user.js";
-import { signOut } from "../utils/gather";
+import HomePage from '../pages/demo/index1';
 
+import { signOut } from "../utils/gather";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
-
-const HomePage = () => <div>home page</div>
 const UserPage = () => <div>user page</div>
 
 export default class AdminLayout extends React.Component {
@@ -50,9 +49,6 @@ export default class AdminLayout extends React.Component {
                                 fontWeight: "bold"
                             }}><Icon type="video-camera" /><span>table</span></NavLink>
                         </Menu.Item>
-                        <Menu.Item key="3" onClick={this.signOutHandle}>
-                            <Icon type="logout" /><span>退出</span>
-                        </Menu.Item>
                         <Menu.Item key="4" onClick={this.clickNav}>
                             <NavLink to="/admin/lazy" activeStyle={{
                                 fontWeight: "bold"
@@ -67,6 +63,13 @@ export default class AdminLayout extends React.Component {
                             <NavLink to="/admin/redux/user" exact activeStyle={{
                                 fontWeight: "bold"
                             }}><Icon type="video-camera" /><span>redux user</span></NavLink>
+                        </Menu.Item>
+
+
+                        <Menu.Item key="7" onClick={this.clickNav}>
+                            <NavLink to="/admin/page" exact activeStyle={{
+                                fontWeight: "bold"
+                            }}><Icon type="video-camera" /><span>demo1</span></NavLink>
                         </Menu.Item>
                     </Menu>
                 </Sider>
