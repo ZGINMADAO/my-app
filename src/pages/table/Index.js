@@ -1,64 +1,98 @@
 import React from 'react';
-import {Table} from 'antd';
+import { Table } from 'antd';
+import request from '../../utils/request'
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        render: text => <a href="javascript:;">{text}</a>,
+        title: '用户名',
+        dataIndex: 'username',
+        sorter: true,
+        width: '20%',
+    },
+
+    {
+        title: '昵称',
+        dataIndex: 'nickname',
+        sorter: true,
+        width: '20%',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '手机号',
+        dataIndex: 'phone',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
+        title: 'Email',
+        dataIndex: 'email',
     },
 ];
 
-// rowSelection object indicates the need for row selection
-const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-    },
-    getCheckboxProps: record => ({
-        disabled: record.name === 'Disabled User', // Column configuration not to be checked
-        name: record.name,
-    }),
-};
+export default class App extends React.Component {
+    state = {
+        data: [],
+        pagination: {
+            pageSize:10
+        },
+        loading: false,
+    };
+
+    componentDidMount() {
+        this.fetch();
+    }
+
+    handleTableChange = (pagination, filters, sorter) => {
+        const pager = { ...this.state.pagination };
+        pager.current = pagination.current;
+        console.log('handleTableChange pagination');
+        console.log(pagination);
+        this.setState({
+            pagination: pager,
+        });
+        this.fetch({
+            results: pagination.pageSize,
+            page: pagination.current,
+            sortField: sorter.field,
+            sortOrder: sorter.order,
+            ...filters,
+        });
+    };
+
+    fetch = (params = {}) => {
+        // console.log('params:', params);
+        this.setState({ loading: true });
+        request.get('http://build.cn/table', {
+            params: {
+                results: this.state.pagination.pageSize,  //pageSize
+                ...params,
+            }
+        }).then(data => {
+            const pagination = { ...this.state.pagination };
+            console.log('pagination');
+            console.log(pagination);
+            pagination.total = data.total;
+            pagination.onlyADemo='ggc';
+        
+            this.setState({
+                loading: false,
+                data: data.rows,
+                pagination,
+            });
+        }).catch(function (err) {
+            console.log('err');
+            console.log(err);
+        });
+    };
 
 
-export default function () {
-    return (
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data}/>
-    );
+    render() {
+        return (
+            <Table
+                columns={columns}
+                rowKey={record => record.login.uuid}
+                dataSource={this.state.data}
+                pagination={this.state.pagination}
+                loading={this.state.loading}
+                onChange={this.handleTableChange}
+            />
+        );
+    }
 }
-
-

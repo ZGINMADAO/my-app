@@ -4,7 +4,7 @@ import {message} from 'antd'
 const request = axios.create();
 
 const getUrl = (url, mock) => {
-    return mock ? `/${url}` : `/api/${url}`
+    return url;
 };
 let reqQueue = 0;
 
@@ -29,11 +29,11 @@ request.interceptors.response.use(response => {
         reqQueue -= 1;
         reqQueue === 0 && loading.hide();
     }
-    if (response.data.code !== 0) {
-        message.error(response.data.message);
-        return Promise.reject(response.data);
-    }
-    return response.data.data;
+    // if (response.data.code !== 0) {
+    //     message.error(response.data.message);
+    //     return Promise.reject(response.data);
+    // }
+    return response.data;
 }, error => {
     if (error.config['loading']) {
         reqQueue -= 1;
