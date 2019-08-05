@@ -39,16 +39,38 @@ export default class AdminLayout extends React.Component {
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1">
-                            <NavLink to="/admin/index" activeStyle={{
-                                fontWeight: "bold"
-                            }}> <Icon type="user" /><span>index</span></NavLink>
-                        </Menu.Item>
-                        <Menu.Item key="2" onClick={this.clickNav}>
-                            <NavLink to="/admin/table" activeStyle={{
-                                fontWeight: "bold"
-                            }}><Icon type="video-camera" /><span>table</span></NavLink>
-                        </Menu.Item>
+
+                        <SubMenu
+                            key="sub1"
+                            title={
+                                <span>
+                                    <Icon type="mail" />
+                                    <span>Navigation One</span>
+                                </span>
+                            }
+                        >
+                            <Menu.Item key="sub1-1">
+
+                                <NavLink to="/admin/index" activeStyle={{
+                                    fontWeight: "bold"
+                                }}> <Icon type="user" /><span>index</span></NavLink>
+                            </Menu.Item>
+
+                            <Menu.Item key="sub1-2">
+
+                                <NavLink to="/admin/index" activeStyle={{
+                                    fontWeight: "bold"
+                                }}> <Icon type="user" /><span>index2</span></NavLink>
+                            </Menu.Item>
+                        </SubMenu>
+
+                        <SubMenu key="sub3" title="Submenu">
+                            <Menu.Item key="2" onClick={this.clickNav}>
+                                <NavLink to="/admin/table" activeStyle={{
+                                    fontWeight: "bold"
+                                }}><Icon type="video-camera" /><span>table</span></NavLink>
+                            </Menu.Item>
+                        </SubMenu>
                         <Menu.Item key="4" onClick={this.clickNav}>
                             <NavLink to="/admin/lazy" activeStyle={{
                                 fontWeight: "bold"
